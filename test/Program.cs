@@ -1,18 +1,21 @@
-﻿int DigitCount(int A)
-
+﻿int[] getArray();
 {
-    int count = 0;
-    while(A != 0)
+    int[] array = new int[8];
+
+    for (int i = 0; i < array.Length; i++)
     {
-        A /= 10;
-        count ++;
+        array[i] = new Random().Next(0, 2);
     }
-    return count;
+
+    return array;
 }
 
-Console.Clear();
-
-Console.WriteLine("введите число: ");
-int N = int.Parse(Console.ReadLine()!);
-
-Console.WriteLine($"колличество цифр в числе равно {DigitCount(N)}");
+void printArray(int[] inArray)
+{
+    for (int i = 0; i < inArray.Length; i++)
+    {
+        Console.WriteLine($"{inArray[i]}");
+    }
+}
+int[] array = getArray();
+printArray(array);
