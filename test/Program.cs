@@ -11,19 +11,7 @@ int[] Getarray(int size; int MinValue, int MaxValue)
     return result;
 }
 
-int CountElement(int[] array)
-{
-    int count = 0;
 
-    foreach(int el in array)
-    {
-        if (el > 9 && el < 100)
-        {
-            count++;
-        }
-    }
-    return count;
-}
 
-int[] array = Getarray(123, 1, 100);
-Console.WriteLine(String.Join("," , array));
+int[] array1 = Getarray(4, 1, 10);
+Console.WriteLine(String.Join("," , array1));
