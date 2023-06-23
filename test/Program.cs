@@ -1,25 +1,26 @@
 ﻿Console.Clear();
 
-int[] GetArray(int size; int minValue; int maxValue)
+int[] GetArray(int size, int MinValue, int MaxValue)
 {
     int[] result = new int[size];
 
-    for (int i = 0; i < size; i++)
+    for ( int i = 0; i < size; i++)
     {
-        result[i] = new Random().Next(minValue, maxValue + 1);
+        result[i] = new Random().Next(MinValue, MaxValue + 1);
     }
+
     return result;
 }
-int[] array = GetArray(12, -9, 9);
-Console.WriteLine(String.Join(", ", array));
 
-int positiveSum = 0;
-int negativeSum = 0;
-
-foreach (int el in array)
+void SigChange(int[] array)
 {
-    positiveSum += el > 0 ? el : 0;
-    negativeSum += el < 0 ? el : 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] *= -1;
+    }
 }
 
-Console.Write($"сумма положительгых чисел массива ровна {positiviSum} а сумма отрицательных {negativeSum}");
+int[] array = GetArray(12, -9, 9);
+Console.WriteLine(String.Join(", ", array));
+SigChange(array);
+Console.WriteLine(String.Join(", ", array));
