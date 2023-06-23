@@ -1,39 +1,29 @@
 ﻿Console.Clear();
 
-int[] GetArray(int size, int MinValue, int MaxValue)
+int[] Getarray(int size; int MinValue, int MaxValue)
 {
     int[] result = new int[size];
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size, i++)
     {
-        result[i] = new Random { }.Next(MinValue, MaxValue + 1);
+        result[i] = new Random().Next(MinValue, MaxValue + 1);
     }
     return result;
 }
 
-bool FindElement(int number, int[] collection)
+int CountElement(int[] array)
 {
-    foreach (int el in collection)
+    int count = 0;
+
+    foreach(int el in array)
     {
-        if (el == number)
+        if (el > 9 && el < 100)
         {
-            return true;
+            count++;
         }
     }
-    return false;
+    return count;
 }
 
-int[] array = GetArray(12, -9, 9);
-Console.WriteLine(String.Join(", ", array));
-
-Console.WriteLine("ВВЕДИТЕ ЧИСЛО N: ");
-int N = int.Parse(Console.ReadLine()!);
-
-if (FindElement(N, array))
-{
-    Console.WriteLine("yes");
-}
-else
-{
-    Console.WriteLine("no");
-}
+int[] array = Getarray(123, 1, 100);
+Console.WriteLine(String.Join("," , array));
