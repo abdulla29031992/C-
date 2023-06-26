@@ -1,29 +1,31 @@
-﻿int[] GetArray(int size,int minValue, int maxValue)
+﻿int[] GetArray(int size, int minValue, int maxValue)
 {
     int[] result = new int[size];
 
     for (int i = 0; i < size; i++)
     {
-        result[i]= new Random().Next(minValue, maxValue + 1);
+        result[i] = new Random().Next(minValue, maxValue + 1);
     }
 
     return result;
 }
 
-int CountElement(int[] array)
+
+int GetSum(int[] array)
 {
-    int result = 0;
+    int sum = 0;
 
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < array.Length; i += 2)
     {
-        if (array[i] % 2 == 0) result++;
+        sum += array[i];
     }
-    return result;
+    return sum;
 }
+
 
 Console.Clear();
 
 int[] array = GetArray(4, 100, 1000);
 Console.WriteLine(String.Join(", ", array));
-int end = CountElement(array);
-Console.WriteLine($"колличество четных элементов массива равно {end}");
+int end = GetSum(array);
+Console.WriteLine($"Сумма элементрв на нечетных позициях равна {end}");
