@@ -1,35 +1,29 @@
-﻿Console.Clear();
-
-int[] GetArray(int size, int MinValue, int MaxValue)
+﻿int[] GetArray(int size,int minValue, int maxValue)
 {
     int[] result = new int[size];
 
     for (int i = 0; i < size; i++)
     {
-        result[i] = new Random().Next(MinValue, MaxValue +1);
+        result[i]= new Random().Next(minValue, maxValue + 1);
     }
+
     return result;
 }
 
-int[] MultiArray(int[] array)
+int CountElement(int[] array)
 {
-    int size = array.Length / 2;
+    int result = 0;
 
-    if (array.Length % 2 != 0) size++;
-
-    int[] result = new int[size];
-    for (int i = 0; i < array.Length / 2; i++)
+    for (int i = 0; i < array.Length; i++)
     {
-        result[i] = array[i] * array[array.Length - 1 - i];
+        if (array[i] % 2 == 0) result++;
     }
-
-    if (array.Length % 2 != 0)
-    array[size - 1] = array[array.Length / 2];
     return result;
 }
 
-int[] array1 = GetArray(4, -9, 9);
-Console.WriteLine(String.Join(", ", array1));
+Console.Clear();
 
-int[] array2 = MultiArray(array1);
-Console.WriteLine(String.Join(", ", array2));
+int[] array = GetArray(4, 100, 1000);
+Console.WriteLine(String.Join(", ", array));
+int end = CountElement(array);
+Console.WriteLine($"колличество четных элементов массива равно {end}");
