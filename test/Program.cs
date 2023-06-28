@@ -1,48 +1,46 @@
-﻿double[] GetArray(int size, double MinValue, double MaxValue)
+﻿int[] GetArray(int size, int MinValue, int MaxValue)
 {
-    double[] result = new double[size];
+    int[] result = new int[size];
 
+    for (int i = 0; i < size; i++)
     {
-        for (int i = 0; i < size; i++)
-        {
-            result[i] = new Random().NextDouble() * (MaxValue - MinValue) + MinValue;
-        }
-        return result;
+        result[i] = new Random().Next(MinValue, MaxValue + 1);
+    }
+
+    return result;
+}
+
+void ReversArray1(int[] inArray)
+{
+
+    for (int i = 0; i < inArray.Length / 2; i++)
+    {
+        int temp = inArray[i];
+        inArray[i] = inArray[inArray.Length - 1 - i];
+        inArray[inArray.Length - 1 - i] = temp;
     }
 }
 
-double FindMax(double[] array)
+int[] ReversArray2(int[] inArray)
 {
-    double max = array[0];
+    int[] result = new int[inArray.Length];
 
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < inArray.Length; i++)
     {
-        if (array[i] > max)
-        {
-            max = array[i];
-        }
+        result[i] = inArray[inArray.Length - 1 - i];
     }
-    return max;
+    return result;
+
 }
 
-double FindMin(double[] array)
-{
-    double min = array[0];
-
-    for (int i = 0; i < array.Length; i++)
-    {
-        if (array[i] < min)
-        {
-            min = array[i];
-        }
-    }
-    return min;
-}
 
 Console.Clear();
 
-double[] array = GetArray(6, 1, 10);
+int[] array = GetArray(6, 1, 10);
 Console.WriteLine(String.Join(", ", array));
 
-double dif = FindMax(array) - FindMin(array);
-Console.WriteLine($"{dif}");
+ReversArray1(array);
+Console.WriteLine(String.Join(", ", array));
+
+int[] revered = ReversArray2(array);
+Console.WriteLine(String.Join(", ", revered));
