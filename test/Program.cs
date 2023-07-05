@@ -1,27 +1,48 @@
-﻿int[] GetArray(int size, int minValue, int maxValue)
+﻿int[,] GetArray(int row, int col, int minValue, int maxValue)
 {
-  int[] result = new int[size];
+  int[,] result = new int[row, col];
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < row; i++)
   {
-    result[i] = new Random().Next(minValue, maxValue + 1);
+    for (j = 0;  j < col; j++)
+    {
+      result[i, j] = new Random().Next(minValue, maxValue + 1);
+    }
   }
   return result;
 }
 
-
-int CountArray(int[] array)
+void GetSqrArray(int[,] array2D)
 {
-  int result = 0;
-
-  foreach (int el in array)
+  for (int i = 0; i < array2D.GetLength; i++)
   {
-    if (el > 0) result++
+    for (int j = 0; j < array2D.GetLength; j++)
+    {
+      array2D[i, j] *= array2D[i, j];
+    }
   }
-  return result;
 }
 
-int[] array = GetArray(4, -10, 10);
-Console.WriteLine(string.Join(", ", array));
-int end = CountArray(array);
-Console.WriteLine($"колличество элемнтов больше нуля {end}");
+void PrintArray(int[,] inArray)
+{
+    for (int i = 0; i < inArray.GetLength(0); i++)
+    {
+        for(int j = 0; j < inArray.GetLength(1); j++)
+        {
+            Console.Write($"{inArray[i, j]}\t ");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.Write("enter row: ");
+int row = int.Parse(Console.ReadLine()!);
+
+Console.Write("enter col: ");
+int col = int.Parse(Console.ReadLine()!);
+
+int[,] array2D = GetArray(row, col, -10, 10);
+PrintArray(array2D);
+Console.WriteLine();
+GetSqrArray(array2D);
+PrintArray(array2D);
