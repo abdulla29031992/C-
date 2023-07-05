@@ -1,26 +1,29 @@
-﻿int[,] GetArray(int row, int col, int minValue, int maxValue)
-{
-  int[,] result = new int[row, col];
+﻿// Задача 49: Задайте двумерный массив. Найдите элементы, у
+// которых оба индекса чётные, и замените эти элементы на их
+// квадраты
 
-  for (int i = 0; i < row; i++)
-  {
-    for (j = 0;  j < col; j++)
+int[,] GetArray(int row, int col, int minValue, int maxValue)
+{
+    int[,] result = new int[row, col];
+    for (int i = 0; i < row; i++)
     {
-      result[i, j] = new Random().Next(minValue, maxValue + 1);
+        for (int j = 0; j < col; j++)
+        {
+            result[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
     }
-  }
-  return result;
+    return result;
 }
 
 void GetSqrArray(int[,] array2D)
 {
-  for (int i = 0; i < array2D.GetLength; i++)
-  {
-    for (int j = 0; j < array2D.GetLength; j++)
+    for (int i = 0; i < array2D.GetLength(0); i+= 2)
     {
-      array2D[i, j] *= array2D[i, j];
+        for (int j = 0; j < array2D.GetLength(1); j+= 2)
+        {
+            array2D[i,j] *= array2D[i,j];
+        }
     }
-  }
 }
 
 void PrintArray(int[,] inArray)
@@ -35,10 +38,9 @@ void PrintArray(int[,] inArray)
     }
 }
 
-Console.Write("enter row: ");
+Console.Write("print row: ");
 int row = int.Parse(Console.ReadLine()!);
-
-Console.Write("enter col: ");
+Console.Write("print col: ");
 int col = int.Parse(Console.ReadLine()!);
 
 int[,] array2D = GetArray(row, col, -10, 10);
