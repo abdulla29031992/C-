@@ -1,39 +1,45 @@
-﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-// m = 3, n = 4.
-// 0,5 7 -2 -0,2
-// 1 -3,3 8 -9,9
-// 8 7,8 -7,1 9                         
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+// и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-double[,] GetArray(int row, int col, double minValue, double maxValue)
+Console.WriteLine("введите номер строки");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("введите номер столбца");
+int m = Convert.ToInt32(Console.ReadLine());
+int[,] numbers = new int[10, 10];
+FillArrayRandomNumbers(numbers);
+
+if (n > numbers.GetLength(0) || m > numbers.GetLength(1))
 {
-    double[,] result = new double[row, col];
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
-            result[i, j] = Math.Round(minValue + new Random().NextDouble() * (maxValue-minValue), 1);
-
-        }
-    }
-    return result;
+  Console.WriteLine("такого элемента нет");
+}
+else
+{
+  Console.WriteLine($"значение элемента {n} строки и {m} столбца равно {numbers[n - 1, m - 1]}");
 }
 
-void PrintArray(double[,] inArray)
-{
-    for (int i = 0; i < inArray.GetLength(0); i++)
+PrintArray(numbers);
+
+void FillArrayRandomNumbers(int[,] array)
+{   
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-        for (int j = 0; j < inArray.GetLength(1); j++)
-        {
-            Console.Write($"{inArray[i, j]}\t ");
-        }
-        Console.WriteLine();
+      array[i, j] = new Random().Next(-100, 100) / 10;
     }
+  }
 }
 
-Console.Clear();
-Console.Write("enter row: ");
-double row = int.Parse(Console.ReadLine()!);
-Console.Write("enter col: ");
-double col = int.Parse(Console.ReadLine()!);
-double[,] array = GetArray(3, 4, -10, 10);
-PrintArray(array);
+void PrintArray(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    Console.Write("[ ");
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      Console.Write(array[i, j] + " ");
+    }
+    Console.Write("]");
+    Console.WriteLine("");
+  }
+}
