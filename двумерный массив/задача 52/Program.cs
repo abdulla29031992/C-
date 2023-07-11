@@ -1,0 +1,3 @@
+﻿Console.CleAR();
+
+cONSOLE.WriteLine
