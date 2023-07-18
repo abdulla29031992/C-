@@ -1,60 +1,60 @@
-﻿// задача 54. Задайте двумерный массив. Напишите программу, 
-// которая упорядочит по убыванию элементы каждой строки двумерного массива.
+﻿// Задача 56: Задайте прямоугольный двумерный массив. 
+// Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 
-int[,] GetArray(int m, int n, int minValue, int maxValue)
+int[,] GetArray(int row, int col, int minValue, int maxValue)
 {
-  int[,] result = new int[m, n];
-  for (int i = 0; i < m; i++)
-  {
-    for (int j = 0; j < n; j++)
+    int[,] result = new int[row, col];
+    for (int i = 0; i < row; i++)
     {
-      result[i, j] = new Random().Next(minValue, maxValue + 1);
+        for (int j = 0; j < col; j++)
+        {
+            result[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
     }
-  }
-
-  return result;
+    return result;
 }
 
 void PrintArray(int[,] inArray)
 {
-  for (int i = 0; i < inArray.GetLength(0); i++)
-  {
-    for (int j = 0; j < inArray.GetLength(1); j++)
+    for (int i = 0; i < inArray.GetLength(0); i++)
     {
-      Console.Write($"{inArray[i, j]}\t");
+        for (int j = 0; j < inArray.GetLength(1); j++)
+        {
+            Console.Write($"{inArray[i, j]}\t ");
+        }
+        Console.WriteLine();
     }
-    Console.WriteLine();
-  }
 }
 
-void SortArray(int[,] array2D)
+void GetMinSum(int[,] minArray)
 {
-    for (int i = 0; i < array2D.GetLength(0); i++)
+    int sum;
+    int min = 0;
+    int minRow = 1;
+    bool isStrated = false;
+    for (int i = 0; i < minArray.GetLength(0); i++)
     {
-        for (int j = 0; j < array2D.GetLength(1) - 1; j++)
+        sum = 0;
+        for (int j = 0; j < minArray.GetLength(1); j++)
         {
-            for (int k = j + 1; k < array2D.GetLength(1); k++)
-            {
-                if (array2D[i,j] < array2D[i,k])
-                {
-                    int temp = array2D[i,j];
-                    array2D[i,j] = array2D[i,k];
-                    array2D[i,k] = temp;
-                }
-            }
+            sum += minArray[i, j];
+
+        }
+        if (!isStrated || sum < min)
+        {
+            isStrated = true;
+            min = sum;
+            minRow = i + 1;
         }
     }
+    Console.WriteLine($"{minRow} строка");
 }
-
 
 Console.Clear();
 Console.Write("row = ");
 int row = int.Parse(Console.ReadLine()!);
 Console.Write("col = ");
 int col = int.Parse(Console.ReadLine()!);
-int[,] newArray = GetArray(row, col, 1, 10);
-Console.WriteLine();
-PrintArray(newArray);
-SortArray(newArray);
-Console.WriteLine();
-PrintArray(newArray);
+int[,] array2D = GetArray(row, col, 1, 10);
+PrintArray(array2D);
+GetMinSum(array2D);
