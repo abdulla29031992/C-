@@ -40,7 +40,7 @@ int[,] MultiMatrix(int[,] matrixA, int[,] matrixB)
         {
             for (int k = 0; k < matrixA.GetLength(1); k++)
             {
-                matrixC[i,j] += matrixA[i,k] * matrixA[k, j];
+                matrixC[i,j] += matrixA[i,k] * matrixB[k, j];
             } 
         }
     }
