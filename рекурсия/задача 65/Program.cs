@@ -6,7 +6,7 @@
 string NumberFor(int m, int n)
 {
     if (m == n) return $"{m}";
-    return $"{m}" + NumberFor(m + 1, n);
+    return $"{m}, " + NumberFor(m + 1, n);
 }
 
 Console.Clear();
